@@ -12,5 +12,14 @@ class Course < ActiveRecord::Base
   has_many :students,
     through: :enrollments,
     source: :student
-    
+
+  belongs_to :prereq,
+    primary_key: :id,
+    foreign_key: :prereq_id,
+    class_name: :Course
+
+  has_many :postreqs,
+    primary_key: :id,
+    foreign_key: :prereq_id, 
+    class_name: :Course
 end
